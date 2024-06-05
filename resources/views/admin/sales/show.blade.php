@@ -47,6 +47,14 @@
                             {{ $sale->sold_by->name ?? '' }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.sale.fields.total') }}
+                        </th>
+                        <td>
+                            {{ $sale->total }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
