@@ -49,6 +49,16 @@
                 <span class="help-block">{{ trans('cruds.sale.fields.sold_by_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="total">{{ trans('cruds.sale.fields.total') }}</label>
+                <input class="form-control {{ $errors->has('total') ? 'is-invalid' : '' }}" type="number" name="total" id="total" value="{{ old('total', $sale->total) }}" step="0.01" required>
+                @if($errors->has('total'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('total') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.sale.fields.total_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>
