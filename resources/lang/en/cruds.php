@@ -171,6 +171,8 @@ return [
             'product_helper'    => ' ',
             'quantity'          => 'Quantity',
             'quantity_helper'   => ' ',
+            'total'             => 'Total',
+            'total_helper'      => ' ',
         ],
     ],
     'auditLog' => [
