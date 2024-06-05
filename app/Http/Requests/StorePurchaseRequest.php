@@ -21,9 +21,9 @@ class StorePurchaseRequest extends FormRequest
                 'required',
                 'integer',
             ],
-            'price' => [
-                'required',
-            ],
+            // 'price' => [
+            //     'required',
+            // ],
             'quantity' => [
                 'nullable',
                 'integer',
