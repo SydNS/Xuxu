@@ -24,6 +24,7 @@ class Sale extends Model
         'product_id',
         'quantity',
         'sold_by_id',
+        'total',
         'created_at',
         'updated_at',
         'deleted_at',
