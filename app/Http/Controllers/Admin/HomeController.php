@@ -186,43 +186,52 @@ class HomeController
         $chart5 = new LaravelChart($settings5);
 
         $settings6 = [
-            'chart_title'           => 'Expenses',
-            'chart_type'            => 'pie',
-            'report_type'           => 'group_by_date',
-            'model'                 => 'App\Models\Expense',
-            'group_by_field'        => 'entry_date',
-            'group_by_period'       => 'week',
-            'aggregate_function'    => 'sum',
-            'aggregate_field'       => 'amount',
-            'filter_field'          => 'created_at',
-            'filter_days'           => '7',
-            'group_by_field_format' => 'Y-m-d',
-            'column_class'          => 'col-md-6',
-            'entries_number'        => '5',
-            'translation_key'       => 'expense',
-        ];
-
-        $chart6 = new LaravelChart($settings6);
-
-        $settings7 = [
-            'chart_title'           => 'Purchases',
+            'chart_title'           => 'Products',
             'chart_type'            => 'latest_entries',
             'report_type'           => 'group_by_date',
-            'model'                 => 'App\Models\Purchase',
+            'model'                 => 'App\Models\Product',
             'group_by_field'        => 'created_at',
             'group_by_period'       => 'day',
             'aggregate_function'    => 'count',
             'filter_field'          => 'created_at',
             'group_by_field_format' => 'Y-m-d H:i:s',
-            'column_class'          => 'col-md-6',
+            'column_class'          => 'col-md-3',
             'entries_number'        => '5',
             'fields'                => [
-                'product_purchased' => 'name',
-                'price'             => '',
-                'quantity'          => '',
-                'total_cost'        => '',
+                'name'  => '',
+                'price' => '',
             ],
-            'translation_key' => 'purchase',
+            'translation_key' => 'product',
+        ];
+
+        $settings6['data'] = [];
+        if (class_exists($settings6['model'])) {
+            $settings6['data'] = $settings6['model']::latest()
+                ->take($settings6['entries_number'])
+                ->get();
+        }
+
+        if (! array_key_exists('fields', $settings6)) {
+            $settings6['fields'] = [];
+        }
+
+        $settings7 = [
+            'chart_title'           => 'Expenses',
+            'chart_type'            => 'latest_entries',
+            'report_type'           => 'group_by_date',
+            'model'                 => 'App\Models\Expense',
+            'group_by_field'        => 'entry_date',
+            'group_by_period'       => 'day',
+            'aggregate_function'    => 'count',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'Y-m-d',
+            'column_class'          => 'col-md-3',
+            'entries_number'        => '5',
+            'fields'                => [
+                'expense_category' => 'name',
+                'amount'           => '',
+            ],
+            'translation_key' => 'expense',
         ];
 
         $settings7['data'] = [];
@@ -236,37 +245,6 @@ class HomeController
             $settings7['fields'] = [];
         }
 
-        $settings8 = [
-            'chart_title'           => 'Products',
-            'chart_type'            => 'latest_entries',
-            'report_type'           => 'group_by_date',
-            'model'                 => 'App\Models\Product',
-            'group_by_field'        => 'created_at',
-            'group_by_period'       => 'day',
-            'aggregate_function'    => 'count',
-            'filter_field'          => 'created_at',
-            'group_by_field_format' => 'Y-m-d H:i:s',
-            'column_class'          => 'col-md-6',
-            'entries_number'        => '5',
-            'fields'                => [
-                'name'  => '',
-                'price' => '',
-                'tag'   => 'name',
-            ],
-            'translation_key' => 'product',
-        ];
-
-        $settings8['data'] = [];
-        if (class_exists($settings8['model'])) {
-            $settings8['data'] = $settings8['model']::latest()
-                ->take($settings8['entries_number'])
-                ->get();
-        }
-
-        if (! array_key_exists('fields', $settings8)) {
-            $settings8['fields'] = [];
-        }
-
-        return view('home', compact('chart5', 'chart6', 'settings1', 'settings2', 'settings3', 'settings4', 'settings7', 'settings8'));
+        return view('home', compact('chart5', 'settings1', 'settings2', 'settings3', 'settings4', 'settings6', 'settings7'));
     }
 }
