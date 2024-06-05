@@ -11,6 +11,7 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('quantity');
+            $table->decimal('total', 15, 2);
             $table->timestamps();
             $table->softDeletes();
         });
