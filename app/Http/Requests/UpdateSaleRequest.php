@@ -21,11 +21,11 @@ class UpdateSaleRequest extends FormRequest
                 'required',
                 'integer',
             ],
-            'sale_price' => [
+            'quantity' => [
                 'required',
-            ],
-            'total_sale_price' => [
-                'numeric',
+                'integer',
+                'min:-2147483648',
+                'max:2147483647',
             ],
             'sold_by_id' => [
                 'required',
