@@ -32,10 +32,7 @@
                         {{ trans('cruds.sale.fields.product') }}
                     </th>
                     <th>
-                        {{ trans('cruds.sale.fields.sale_price') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.sale.fields.total_sale_price') }}
+                        {{ trans('cruds.sale.fields.quantity') }}
                     </th>
                     <th>
                         {{ trans('cruds.sale.fields.sold_by') }}
@@ -101,8 +98,7 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'product_name', name: 'product.name' },
-{ data: 'sale_price', name: 'sale_price' },
-{ data: 'total_sale_price', name: 'total_sale_price' },
+{ data: 'quantity', name: 'quantity' },
 { data: 'sold_by_name', name: 'sold_by.name' },
 { data: 'sold_by.email', name: 'sold_by.email' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }

@@ -25,24 +25,14 @@
                 <span class="help-block">{{ trans('cruds.sale.fields.product_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="sale_price">{{ trans('cruds.sale.fields.sale_price') }}</label>
-                <input class="form-control {{ $errors->has('sale_price') ? 'is-invalid' : '' }}" type="number" name="sale_price" id="sale_price" value="{{ old('sale_price', $sale->sale_price) }}" step="0.01" required>
-                @if($errors->has('sale_price'))
+                <label class="required" for="quantity">{{ trans('cruds.sale.fields.quantity') }}</label>
+                <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="number" name="quantity" id="quantity" value="{{ old('quantity', $sale->quantity) }}" step="1" required>
+                @if($errors->has('quantity'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('sale_price') }}
+                        {{ $errors->first('quantity') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.sale.fields.sale_price_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="total_sale_price">{{ trans('cruds.sale.fields.total_sale_price') }}</label>
-                <input class="form-control {{ $errors->has('total_sale_price') ? 'is-invalid' : '' }}" type="number" name="total_sale_price" id="total_sale_price" value="{{ old('total_sale_price', $sale->total_sale_price) }}" step="0.01">
-                @if($errors->has('total_sale_price'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('total_sale_price') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.sale.fields.total_sale_price_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.sale.fields.quantity_helper') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="sold_by_id">{{ trans('cruds.sale.fields.sold_by') }}</label>
