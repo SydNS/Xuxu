@@ -37,6 +37,9 @@
                             {{ trans('cruds.user.fields.email') }}
                         </th>
                         <th>
+                            {{ trans('cruds.sale.fields.total') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -61,6 +64,9 @@
                             </td>
                             <td>
                                 {{ $sale->sold_by->email ?? '' }}
+                            </td>
+                            <td>
+                                {{ $sale->total ?? '' }}
                             </td>
                             <td>
                                 @can('sale_show')
