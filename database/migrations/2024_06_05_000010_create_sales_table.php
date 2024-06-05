@@ -10,8 +10,7 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->decimal('sale_price', 15, 2);
-            $table->float('total_sale_price', 15, 2)->nullable();
+            $table->integer('quantity');
             $table->timestamps();
             $table->softDeletes();
         });
