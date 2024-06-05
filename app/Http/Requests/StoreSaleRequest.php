@@ -31,6 +31,9 @@ class StoreSaleRequest extends FormRequest
                 'required',
                 'integer',
             ],
+            'total' => [
+                'required',
+            ],
         ];
     }
 }
