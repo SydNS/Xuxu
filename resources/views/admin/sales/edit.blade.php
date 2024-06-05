@@ -11,28 +11,18 @@
             @method('PUT')
             @csrf
             <div class="form-group">
-                <label class="required" for="purchase_id">{{ trans('cruds.sale.fields.purchase') }}</label>
-                <select class="form-control select2 {{ $errors->has('purchase') ? 'is-invalid' : '' }}" name="purchase_id" id="purchase_id" required>
-                    @foreach($purchases as $id => $entry)
-                        <option value="{{ $id }}" {{ (old('purchase_id') ? old('purchase_id') : $sale->purchase->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                <label class="required" for="product_id">{{ trans('cruds.sale.fields.product') }}</label>
+                <select class="form-control select2 {{ $errors->has('product') ? 'is-invalid' : '' }}" name="product_id" id="product_id" required>
+                    @foreach($products as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('product_id') ? old('product_id') : $sale->product->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                     @endforeach
                 </select>
-                @if($errors->has('purchase'))
+                @if($errors->has('product'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('purchase') }}
+                        {{ $errors->first('product') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.sale.fields.purchase_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label class="required" for="quantity">{{ trans('cruds.sale.fields.quantity') }}</label>
-                <input class="form-control {{ $errors->has('quantity') ? 'is-invalid' : '' }}" type="number" name="quantity" id="quantity" value="{{ old('quantity', $sale->quantity) }}" step="1" required>
-                @if($errors->has('quantity'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('quantity') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.sale.fields.quantity_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.sale.fields.product_helper') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="sale_price">{{ trans('cruds.sale.fields.sale_price') }}</label>

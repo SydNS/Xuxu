@@ -29,10 +29,7 @@
                         {{ trans('cruds.sale.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.sale.fields.purchase') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.sale.fields.quantity') }}
+                        {{ trans('cruds.sale.fields.product') }}
                     </th>
                     <th>
                         {{ trans('cruds.sale.fields.sale_price') }}
@@ -103,8 +100,7 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
-{ data: 'purchase_price', name: 'purchase.price' },
-{ data: 'quantity', name: 'quantity' },
+{ data: 'product_name', name: 'product.name' },
 { data: 'sale_price', name: 'sale_price' },
 { data: 'total_sale_price', name: 'total_sale_price' },
 { data: 'sold_by_name', name: 'sold_by.name' },
@@ -113,7 +109,7 @@
     ],
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
-    pageLength: 100,
+    pageLength: 10,
   };
   let table = $('.datatable-Sale').DataTable(dtOverrideGlobals);
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){

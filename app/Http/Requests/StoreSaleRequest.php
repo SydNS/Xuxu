@@ -17,15 +17,9 @@ class StoreSaleRequest extends FormRequest
     public function rules()
     {
         return [
-            'purchase_id' => [
+            'product_id' => [
                 'required',
                 'integer',
-            ],
-            'quantity' => [
-                'required',
-                'integer',
-                'min:-2147483648',
-                'max:2147483647',
             ],
             'sale_price' => [
                 'required',

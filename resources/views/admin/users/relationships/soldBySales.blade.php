@@ -25,10 +25,7 @@
                             {{ trans('cruds.sale.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.sale.fields.purchase') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.sale.fields.quantity') }}
+                            {{ trans('cruds.sale.fields.product') }}
                         </th>
                         <th>
                             {{ trans('cruds.sale.fields.sale_price') }}
@@ -57,10 +54,7 @@
                                 {{ $sale->id ?? '' }}
                             </td>
                             <td>
-                                {{ $sale->purchase->price ?? '' }}
-                            </td>
-                            <td>
-                                {{ $sale->quantity ?? '' }}
+                                {{ $sale->product->name ?? '' }}
                             </td>
                             <td>
                                 {{ $sale->sale_price ?? '' }}
@@ -143,7 +137,7 @@
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
-    pageLength: 100,
+    pageLength: 10,
   });
   let table = $('.datatable-soldBySales:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){

@@ -29,16 +29,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('product-categories/destroy', 'ProductCategoryController@massDestroy')->name('product-categories.massDestroy');
     Route::post('product-categories/media', 'ProductCategoryController@storeMedia')->name('product-categories.storeMedia');
     Route::post('product-categories/ckmedia', 'ProductCategoryController@storeCKEditorImages')->name('product-categories.storeCKEditorImages');
+    Route::post('product-categories/parse-csv-import', 'ProductCategoryController@parseCsvImport')->name('product-categories.parseCsvImport');
+    Route::post('product-categories/process-csv-import', 'ProductCategoryController@processCsvImport')->name('product-categories.processCsvImport');
     Route::resource('product-categories', 'ProductCategoryController');
 
     // Product Tag
     Route::delete('product-tags/destroy', 'ProductTagController@massDestroy')->name('product-tags.massDestroy');
+    Route::post('product-tags/parse-csv-import', 'ProductTagController@parseCsvImport')->name('product-tags.parseCsvImport');
+    Route::post('product-tags/process-csv-import', 'ProductTagController@processCsvImport')->name('product-tags.processCsvImport');
     Route::resource('product-tags', 'ProductTagController');
 
     // Product
     Route::delete('products/destroy', 'ProductController@massDestroy')->name('products.massDestroy');
     Route::post('products/media', 'ProductController@storeMedia')->name('products.storeMedia');
     Route::post('products/ckmedia', 'ProductController@storeCKEditorImages')->name('products.storeCKEditorImages');
+    Route::post('products/parse-csv-import', 'ProductController@parseCsvImport')->name('products.parseCsvImport');
+    Route::post('products/process-csv-import', 'ProductController@processCsvImport')->name('products.processCsvImport');
     Route::resource('products', 'ProductController');
 
     // Purchases
@@ -137,6 +143,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Expense Report
     Route::delete('expense-reports/destroy', 'ExpenseReportController@massDestroy')->name('expense-reports.massDestroy');
     Route::resource('expense-reports', 'ExpenseReportController');
+
+    // Requisition
+    Route::delete('requisitions/destroy', 'RequisitionController@massDestroy')->name('requisitions.massDestroy');
+    Route::post('requisitions/parse-csv-import', 'RequisitionController@parseCsvImport')->name('requisitions.parseCsvImport');
+    Route::post('requisitions/process-csv-import', 'RequisitionController@processCsvImport')->name('requisitions.processCsvImport');
+    Route::resource('requisitions', 'RequisitionController');
 
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
 });

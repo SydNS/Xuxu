@@ -25,18 +25,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.sale.fields.purchase') }}
+                            {{ trans('cruds.sale.fields.product') }}
                         </th>
                         <td>
-                            {{ $sale->purchase->price ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.sale.fields.quantity') }}
-                        </th>
-                        <td>
-                            {{ $sale->quantity }}
+                            {{ $sale->product->name ?? '' }}
                         </td>
                     </tr>
                     <tr>

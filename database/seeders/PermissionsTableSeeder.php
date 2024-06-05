@@ -576,6 +576,26 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 142,
+                'title' => 'requisition_create',
+            ],
+            [
+                'id'    => 143,
+                'title' => 'requisition_edit',
+            ],
+            [
+                'id'    => 144,
+                'title' => 'requisition_show',
+            ],
+            [
+                'id'    => 145,
+                'title' => 'requisition_delete',
+            ],
+            [
+                'id'    => 146,
+                'title' => 'requisition_access',
+            ],
+            [
+                'id'    => 147,
                 'title' => 'profile_password_edit',
             ],
         ];

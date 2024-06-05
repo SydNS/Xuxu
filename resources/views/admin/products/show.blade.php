@@ -100,10 +100,26 @@
                 {{ trans('cruds.purchase.title') }}
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#product_requisitions" role="tab" data-toggle="tab">
+                {{ trans('cruds.requisition.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#product_sales" role="tab" data-toggle="tab">
+                {{ trans('cruds.sale.title') }}
+            </a>
+        </li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane" role="tabpanel" id="product_purchased_purchases">
             @includeIf('admin.products.relationships.productPurchasedPurchases', ['purchases' => $product->productPurchasedPurchases])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="product_requisitions">
+            @includeIf('admin.products.relationships.productRequisitions', ['requisitions' => $product->productRequisitions])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="product_sales">
+            @includeIf('admin.products.relationships.productSales', ['sales' => $product->productSales])
         </div>
     </div>
 </div>

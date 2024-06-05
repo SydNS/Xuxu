@@ -17,7 +17,7 @@ class SalesApiController extends Controller
     {
         abort_if(Gate::denies('sale_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new SaleResource(Sale::with(['purchase', 'sold_by'])->get());
+        return new SaleResource(Sale::with(['product', 'sold_by'])->get());
     }
 
     public function store(StoreSaleRequest $request)
@@ -33,7 +33,7 @@ class SalesApiController extends Controller
     {
         abort_if(Gate::denies('sale_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new SaleResource($sale->load(['purchase', 'sold_by']));
+        return new SaleResource($sale->load(['product', 'sold_by']));
     }
 
     public function update(UpdateSaleRequest $request, Sale $sale)

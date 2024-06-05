@@ -7,7 +7,7 @@ use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Requests\MassDestroySaleRequest;
 use App\Http\Requests\StoreSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
-use App\Models\Purchase;
+use App\Models\Product;
 use App\Models\Sale;
 use App\Models\User;
 use Gate;
@@ -24,7 +24,7 @@ class SalesController extends Controller
         abort_if(Gate::denies('sale_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Sale::with(['purchase', 'sold_by'])->select(sprintf('%s.*', (new Sale)->table));
+            $query = Sale::with(['product', 'sold_by'])->select(sprintf('%s.*', (new Sale)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -48,13 +48,10 @@ class SalesController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : '';
             });
-            $table->addColumn('purchase_price', function ($row) {
-                return $row->purchase ? $row->purchase->price : '';
+            $table->addColumn('product_name', function ($row) {
+                return $row->product ? $row->product->name : '';
             });
 
-            $table->editColumn('quantity', function ($row) {
-                return $row->quantity ? $row->quantity : '';
-            });
             $table->editColumn('sale_price', function ($row) {
                 return $row->sale_price ? $row->sale_price : '';
             });
@@ -69,7 +66,7 @@ class SalesController extends Controller
                 return $row->sold_by ? (is_string($row->sold_by) ? $row->sold_by : $row->sold_by->email) : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'purchase', 'sold_by']);
+            $table->rawColumns(['actions', 'placeholder', 'product', 'sold_by']);
 
             return $table->make(true);
         }
@@ -81,11 +78,11 @@ class SalesController extends Controller
     {
         abort_if(Gate::denies('sale_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $purchases = Purchase::pluck('price', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $sold_bies = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.sales.create', compact('purchases', 'sold_bies'));
+        return view('admin.sales.create', compact('products', 'sold_bies'));
     }
 
     public function store(StoreSaleRequest $request)
@@ -99,13 +96,13 @@ class SalesController extends Controller
     {
         abort_if(Gate::denies('sale_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $purchases = Purchase::pluck('price', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $sold_bies = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $sale->load('purchase', 'sold_by');
+        $sale->load('product', 'sold_by');
 
-        return view('admin.sales.edit', compact('purchases', 'sale', 'sold_bies'));
+        return view('admin.sales.edit', compact('products', 'sale', 'sold_bies'));
     }
 
     public function update(UpdateSaleRequest $request, Sale $sale)
@@ -119,7 +116,7 @@ class SalesController extends Controller
     {
         abort_if(Gate::denies('sale_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $sale->load('purchase', 'sold_by');
+        $sale->load('product', 'sold_by');
 
         return view('admin.sales.show', compact('sale'));
     }

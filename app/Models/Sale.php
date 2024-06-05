@@ -21,8 +21,7 @@ class Sale extends Model
     ];
 
     protected $fillable = [
-        'purchase_id',
-        'quantity',
+        'product_id',
         'sale_price',
         'total_sale_price',
         'sold_by_id',
@@ -36,9 +35,9 @@ class Sale extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function purchase()
+    public function product()
     {
-        return $this->belongsTo(Purchase::class, 'purchase_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     public function sold_by()

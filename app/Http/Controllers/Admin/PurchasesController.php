@@ -83,13 +83,7 @@ class PurchasesController extends Controller
 
     public function store(StorePurchaseRequest $request)
     {
-
-        $purchase = Purchase::create([
-            'product_purchased_id' => $request->get('product_purchased_id'),
-            'price' => $request->get('price'),
-            'quantity' => $request->get('quantity'),
-            'total_cost' => $request->get('quantity') * $request->get('price')
-        ]);
+        $purchase = Purchase::create($request->all());
 
         return redirect()->route('admin.purchases.index');
     }
@@ -107,12 +101,7 @@ class PurchasesController extends Controller
 
     public function update(UpdatePurchaseRequest $request, Purchase $purchase)
     {
-        $purchase->update([
-            'product_purchased_id' => $request->get('product_purchased_id'),
-            'price' => $request->get('price'),
-            'quantity' => $request->get('quantity'),
-            'total_cost' => $request->get('quantity') * $request->get('price')
-        ]);
+        $purchase->update($request->all());
 
         return redirect()->route('admin.purchases.index');
     }
@@ -121,7 +110,7 @@ class PurchasesController extends Controller
     {
         abort_if(Gate::denies('purchase_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $purchase->load('product_purchased', 'purchaseSales');
+        $purchase->load('product_purchased');
 
         return view('admin.purchases.show', compact('purchase'));
     }

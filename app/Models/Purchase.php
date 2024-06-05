@@ -35,11 +35,6 @@ class Purchase extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function purchaseSales()
-    {
-        return $this->hasMany(Sale::class, 'purchase_id', 'id');
-    }
-
     public function product_purchased()
     {
         return $this->belongsTo(Product::class, 'product_purchased_id');
