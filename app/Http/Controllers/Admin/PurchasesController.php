@@ -83,7 +83,13 @@ class PurchasesController extends Controller
 
     public function store(StorePurchaseRequest $request)
     {
-        $purchase = Purchase::create($request->all());
+        $product_price = Product::find($request->product_purchased_id)->price;
+        $purchase = Purchase::create([
+            'product_purchased_id' => $request->product_purchased_id,
+            'price' => $product_price,
+            'quantity' => $request->quantity,
+            'total_cost' => $request->quantity * $product_price,
+        ]);
 
         return redirect()->route('admin.purchases.index');
     }
