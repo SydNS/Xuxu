@@ -62,6 +62,9 @@ class SalesController extends Controller
             $table->editColumn('sold_by.email', function ($row) {
                 return $row->sold_by ? (is_string($row->sold_by) ? $row->sold_by : $row->sold_by->email) : '';
             });
+            $table->editColumn('total', function ($row) {
+                return $row->total ? $row->total : '';
+            });
 
             $table->rawColumns(['actions', 'placeholder', 'product', 'sold_by']);
 
