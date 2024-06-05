@@ -52,11 +52,8 @@ class SalesController extends Controller
                 return $row->product ? $row->product->name : '';
             });
 
-            $table->editColumn('sale_price', function ($row) {
-                return $row->sale_price ? $row->sale_price : '';
-            });
-            $table->editColumn('total_sale_price', function ($row) {
-                return $row->total_sale_price ? $row->total_sale_price : '';
+            $table->editColumn('quantity', function ($row) {
+                return $row->quantity ? $row->quantity : '';
             });
             $table->addColumn('sold_by_name', function ($row) {
                 return $row->sold_by ? $row->sold_by->name : '';
