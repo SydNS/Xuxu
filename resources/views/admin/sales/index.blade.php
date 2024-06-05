@@ -37,6 +37,10 @@
                     <th>
                         {{ trans('cruds.sale.fields.sold_by') }}
                     </th>
+
+                    <th>
+                        {{ trans('cruds.sale.fields.total') }}
+                    </th>
                     <th>
                         &nbsp;
                     </th>
@@ -97,6 +101,8 @@
                     { data: 'product_name', name: 'product.name' },
                     { data: 'quantity', name: 'quantity' },
                     { data: 'sold_by_name', name: 'sold_by.name' },
+
+                    { data: 'total', name: 'total' },
                     { data: 'actions', name: '{{ trans('global.actions') }}' }
                 ],
                 orderCellsTop: true,
