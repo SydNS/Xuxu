@@ -28,10 +28,7 @@
                             {{ trans('cruds.sale.fields.product') }}
                         </th>
                         <th>
-                            {{ trans('cruds.sale.fields.sale_price') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.sale.fields.total_sale_price') }}
+                            {{ trans('cruds.sale.fields.quantity') }}
                         </th>
                         <th>
                             {{ trans('cruds.sale.fields.sold_by') }}
@@ -57,10 +54,7 @@
                                 {{ $sale->product->name ?? '' }}
                             </td>
                             <td>
-                                {{ $sale->sale_price ?? '' }}
-                            </td>
-                            <td>
-                                {{ $sale->total_sale_price ?? '' }}
+                                {{ $sale->quantity ?? '' }}
                             </td>
                             <td>
                                 {{ $sale->sold_by->name ?? '' }}
